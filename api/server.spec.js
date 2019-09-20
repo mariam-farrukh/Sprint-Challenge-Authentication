@@ -34,4 +34,23 @@ describe("server", () => {
               });
         });
     });
+
+    describe("POST /api/auth/login", () => {
+        it("returns status 200", () => {
+            request(server)
+              .post("api/auth/login")
+              .send({username:'potato', password: 'potato'})
+              .then(res => {
+                  expect(res.status).toBe(200)
+              });
+        });
+        it("returns status 401", () => {
+            request(server)
+              .post("api/auth/login")
+              .send({username:'potato', password: 'potato1'})
+              .then(res => {
+                  expect(res.status).toBe(401)
+              });
+        });
+    })
 });
