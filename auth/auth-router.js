@@ -5,6 +5,16 @@ const jwt = require('jsonwebtoken');
 const Users = require('./');
 const secrets = require('./');
 
+router.get("/", (req, res) => {
+  Users.getUsers()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error getting users from database" });
+    });
+});
+
 router.post('/register', (req, res) => {
   const user = req.body;
   const hash = bcrypt.hashSync(user.password);
