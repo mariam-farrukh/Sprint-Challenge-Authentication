@@ -2,8 +2,8 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const Users = require('./');
-const secrets = require('./');
+const Users = require('./auth-model.js');
+const secrets = require('./secret.js');
 
 router.get("/", (req, res) => {
   Users.getUsers()
